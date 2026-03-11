@@ -1,38 +1,111 @@
-.App {
-  text-align: center;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Inter',sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.todo-card{
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.3);
+  padding:2.5rem;
+  border-radius:20px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.2);
+  width:90%;
+  max-width:450px;
+  text-align:center;
+  transition:0.3s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.todo-card:hover{
+  transform:translateY(-5px);
 }
 
-.App-link {
-  color: #61dafb;
+h1{
+  margin-bottom:20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.input-container{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+input{
+  flex:1;
+  padding:10px;
+  border-radius:10px;
+  border:2px solid #edf2f7;
+}
+
+input:focus{
+  outline:none;
+  border-color:#667eea;
+}
+
+
+button{
+  background:#667eea;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+button:hover{
+  background:#5a67d8;
+  transform:translateY(-2px);
+}
+
+.task{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+  margin-top:10px;
+  background:#f8fafc;
+  border-radius:10px;
+  transition:0.2s;
+}
+
+.task:hover{
+  background:#eef2ff;
+}
+
+.task-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.task-text{
+  font-weight:500;
+}
+
+.time{
+  font-size:12px;
+  color:gray;
+}
+
+.task-count{
+  margin-top:15px;
+  color:#718096;
+  font-size:14px;
+}
+
+.clear-btn{
+  margin-top:15px;
 }
