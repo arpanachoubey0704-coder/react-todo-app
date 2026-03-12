@@ -1,43 +1,32 @@
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
 
   const [task, setTask] = useState("");
-
-  const [tasks, setTasks] = useState(() => {
-    const saved = localStorage.getItem("tasks");
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+  const [tasks, setTasks] = useState([]);
 
   const addTask = () => {
     if (task.trim() === "") return;
 
-    setTasks([
-      ...tasks,
-      {
-        text: task,
-        completed: false,
-        time: new Date().toLocaleString()
-      }
-    ]);
+    const newTask = {
+      text: task,
+      completed: false
+    };
 
+    setTasks([...tasks, newTask]);
     setTask("");
   };
 
-  const toggleComplete = (index) => {
-    const updated = [...tasks];
-    updated[index].completed = !updated[index].completed;
-    setTasks(updated);
+  const toggleTask = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[index].completed = !updatedTasks[index].completed;
+    setTasks(updatedTasks);
   };
 
   const deleteTask = (index) => {
-    const updated = tasks.filter((_, i) => i !== index);
-    setTasks(updated);
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
   };
 
   const clearAll = () => {
@@ -47,51 +36,37 @@ function App() {
   return (
     <div className="todo-card">
 
-      <h1>My Todo App</h1>
+      <h1>Todo App</h1>
 
       <div className="input-container">
-
         <input
+          type="text"
+          placeholder="Enter your task..."
           value={task}
           onChange={(e) => setTask(e.target.value)}
-          placeholder="Enter a task..."
-          onKeyDown={(e) => {
-            if (e.key === "Enter") addTask();
-          }}
         />
 
         <button onClick={addTask}>Add</button>
-
       </div>
 
-      {tasks.map((t, index) => (
-        <div className="task" key={index}>
+      <ul>
+        {tasks.map((t, index) => (
+          <li key={index} className={t.completed ? "completed" : ""}>
 
-          <div className="task-left">
-
-            <input
-              type="checkbox"
-              checked={t.completed}
-              onChange={() => toggleComplete(index)}
-            />
-
-            <span
-              className="task-text"
-              style={{
-                textDecoration: t.completed ? "line-through" : "none"
-              }}
-            >
+            <span onClick={() => toggleTask(index)}>
               {t.text}
             </span>
 
-            <div className="time">{t.time}</div>
+            <button
+              className="delete-btn"
+              onClick={() => deleteTask(index)}
+            >
+              Delete
+            </button>
 
-          </div>
-  
-          <button onClick={() => deleteTask(index)}>Clear</button>
-
-        </div>
-      ))}
+          </li>
+        ))}
+      </ul>
 
       {tasks.length > 0 && (
         <button className="clear-btn" onClick={clearAll}>
