@@ -10,7 +10,7 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(135deg,#f4f7fc);
+  background:linear-gradient(135deg,#f4f7fc,#e8ecf7);
   padding:20px;
 }
 
@@ -28,6 +28,7 @@ h1{
   margin-bottom:20px;
   color:#333;
 }
+
 
 .input-container{
   display:flex;
@@ -47,6 +48,7 @@ input{
 input:focus{
   border-color:#4a6cf7;
 }
+
 
 button{
   padding:10px 15px;
@@ -75,6 +77,12 @@ li{
   padding:10px;
   border-radius:8px;
   margin-bottom:10px;
+  gap:10px;
+}
+
+li span{
+  flex:1;
+  word-break:break-word;
 }
 
 .completed{
@@ -119,6 +127,16 @@ li{
 
   button{
     width:100%;
+  }
+
+  li{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .delete-btn{
+    width:auto;
+    align-self:flex-end;
   }
 
 }
